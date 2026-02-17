@@ -1,0 +1,155 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Medicine Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        select[multiple] {
+            height: 200px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .order-summary {
+            margin-top: 20px;
+            padding: 10px;
+            background: #eaf5ea;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1> مشتاق میڈیکل سٹور واڑی</h1>
+</header>
+
+<div class="container">
+    <h2>Place Your Order</h2>
+    <form id="orderForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="address">Delivery Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="deliveryTime">Delivery Time:</label>
+        <select id="deliveryTime" name="deliveryTime" required>
+            <option value="1_hour">1 Hour</option>
+            <option value="1_day">1 Day</option>
+            <option value="1_week">1 Week</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="medicines">Select Medicines:</label>
+        <select id="medicines" name="medicines" multiple required>
+            <!-- Sample 100+ medicines -->
+            <option value="Paracetamol 500mg">Paracetamol 500mg</option>
+            <option value="Ibuprofen 200mg">Ibuprofen 200mg</option>
+            <option value="Amoxicillin 500mg">Amoxicillin 500mg</option>
+            <option value="Cetirizine 10mg">Cetirizine 10mg</option>
+            <option value="Azithromycin 250mg">Azithromycin 250mg</option>
+            <option value="Metformin 500mg">Metformin 500mg</option>
+            <option value="Omeprazole 20mg">Omeprazole 20mg</option>
+            <option value="Aspirin 75mg">Aspirin 75mg</option>
+            <option value="Lisinopril 10mg">Lisinopril 10mg</option>
+            <option value="Atorvastatin 20mg">Atorvastatin 20mg</option>
+            <option value="Simvastatin 20mg">Simvastatin 20mg</option>
+            <option value="Losartan 50mg">Losartan 50mg</option>
+            <option value="Hydrochlorothiazide 25mg">Hydrochlorothiazide 25mg</option>
+            <option value="Levothyroxine 50mcg">Levothyroxine 50mcg</option>
+            <option value="Prednisone 5mg">Prednisone 5mg</option>
+            <option value="Furosemide 40mg">Furosemide 40mg</option>
+            <option value="Alprazolam 0.5mg">Alprazolam 0.5mg</option>
+            <option value="Ciprofloxacin 500mg">Ciprofloxacin 500mg</option>
+            <option value="Clindamycin 300mg">Clindamycin 300mg</option>
+            <option value="Doxycycline 100mg">Doxycycline 100mg</option>
+            <!-- Add more options up to 100+ -->
+        </select>
+
+        <button type="submit">Submit Order</button>
+    </form>
+
+    <div class="order-summary" id="summary"></div>
+</div>
+
+<script>
+    const form = document.getElementById('orderForm');
+    const summaryDiv = document.getElementById('summary');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const deliveryTime = document.getElementById('deliveryTime').value;
+        const medicines = Array.from(document.getElementById('medicines').selectedOptions).map(opt => opt.value);
+
+        summaryDiv.innerHTML = `<h3>Order Summary</h3>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
+            <p><strong>Address:</strong> ${address}</p>
+            <p><strong>Delivery Time:</strong> ${deliveryTime.replace("_", " ")}</p>
+            <p><strong>Medicines Ordered:</strong> ${medicines.join(", ")}</p>
+            <p>Your order has been received! We will contact you soon.</p>`;
+    });
+</script>
+
+</body>
+</html>
